@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Galerija slika</title>
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <h1>Galerija slika</h1>
+    <section class="gallery">
+        <% if (images && images.length > 0) { %>
+            <% images.forEach((image) => { %>
+                <figure>
+                    <a href="<%= image.url %>" data-lightbox="gallery" data-title="<%= image.title %>">
+                        <img src="<%= image.url %>" alt="<%= image.title %>">
+                    </a>
+                    <figcaption><%= image.title %></figcaption>
+                </figure>
+            <% }); %>
+        <% } else { %>
+            <p>Nema dostupnih slika.</p>
+        <% } %>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
+        });
+    });
+</script>
+</body>
+</html>
